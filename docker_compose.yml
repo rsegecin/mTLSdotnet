@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  service_api:
+    image: service_api:1
+    build:
+        context: ./app
+        dockerfile: ../Service/Dockerfile
+    ports:
+      - "5020:5020"
+      - "5021:5021"
+    environment: 
+      ASPNETCORE_ENVIRONMENT: Release
+  
+  client_api:
+    image: client_api:1
+    build:
+        context: ./app
+        dockerfile: ../Client/Dockerfile
+    ports:
+      - "5010:5010"
+      - "5011:5011"
+    environment: 
+      ASPNETCORE_ENVIRONMENT: Release

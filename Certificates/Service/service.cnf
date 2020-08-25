@@ -1,0 +1,58 @@
+HOME            = .
+RANDFILE        = $ENV::HOME/.rnd
+
+####################################################################
+[ req ]
+default_bits       = 4096
+default_keyfile    = localkey.pem
+distinguished_name = server_distinguished_name
+req_extensions     = server_req_extensions
+string_mask        = utf8only
+
+####################################################################
+[ server_distinguished_name ]
+countryName         = Country Name (2 letter code)
+countryName_default = BR
+
+stateOrProvinceName         = State or Province Name (full name)
+stateOrProvinceName_default = Parana
+
+localityName                = Locality Name (eg, city)
+localityName_default        = Curitiba
+
+organizationName            = Organization Name (eg, company)
+organizationName_default    = mtlsdotnetdemo
+
+organizationalUnitName         = Organizational Unit (eg, division)
+organizationalUnitName_default = R&D
+
+commonName         = Common Name (e.g. server FQDN or YOUR name)
+commonName_default = localhost
+
+emailAddress         = Email Address
+emailAddress_default = support@mtlsdotnetdemo.com
+
+####################################################################
+[ server_req_extensions ]
+
+subjectKeyIdentifier = hash
+basicConstraints     = CA:FALSE
+keyUsage             = digitalSignature, keyEncipherment
+subjectAltName       = @alternate_names
+nsComment            = "OpenSSL Generated Certificate"
+extendedKeyUsage 	 = serverAuth, clientAuth
+
+####################################################################
+[ alternate_names ]
+
+DNS.1	= localhost
+
+DNS.2	= localhost.com
+
+# IPv4 localhost
+IP.1    = 127.0.0.1
+
+# IPv6 localhost
+IP.2    = ::1
+
+IP.3    = 192.168.99.100
