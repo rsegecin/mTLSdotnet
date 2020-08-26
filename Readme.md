@@ -4,11 +4,12 @@ This project implements the interaction between two dotnet core services through
 
 ### Build and Run
 
-This demo requires [dotnet core](https://dotnet.microsoft.com/download/dotnet-core/3.1) v3.1 or Docker.
+This demo requires [dotnet core](https://dotnet.microsoft.com/download/dotnet-core/3.1) v3.1 or Docker. 
 
 - Run `build.sh` to create the certificates necessary for this demo
 - Start the Service and Client project through dotnet, Visual Studio or thorugh Docker Compose.
-- Make a http call to `http://localhost:5140/api/client/call-service` or if you install all the ca.crt created on the **Trusted Root Certification Authorities** and client.crt on **Personal Store** call to `https://localhost:5141/api/client/call-service`.
+- Make a http call to `http://localhost:5140/api/client/call-service` 
+- *(Optional)* Install the ca.crt that was generated from the build on the **Trusted Root Certification Authorities** and client.crt on **Personal Store** so you can make a https call to `https://localhost:5141/api/client/call-service`.
 
 ```sh
 $ sh build.sh
