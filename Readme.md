@@ -19,14 +19,14 @@ $ dotnet bin/Debug/netcoreapp3.1/Service.dll
 $ docker-compose up -d
 ```
 
+### Question
+
+ - The only thing that I didn't nail in this project is figure out why I can't I curl inside a container to a https endpoint even though CA is apparently correctly installed, if you do have an answer for please heat me out.
+
 License
 ----
 
 MIT
-
-## TODO
-
- - The only thing that I didn't nail in this project is figure out why I can't I curl inside a container to a https endpoint even though CA is apparently correctly installed, if you do have an answer for it please heat me out.
 
 **Free Software, Hell Yeah!**
 
