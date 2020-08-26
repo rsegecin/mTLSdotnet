@@ -1,7 +1,6 @@
 ﻿using ClientServices.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Client.Controllers
@@ -18,6 +17,13 @@ namespace Client.Controllers
         }
 
         [HttpGet]
+        public IActionResult HealthCheck()
+        {
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("call-service")]
         public async Task<IActionResult> CallService() 
         {
             try
@@ -31,7 +37,7 @@ namespace Client.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return Ok("error: " + ex.Message);
             }
         }
     }

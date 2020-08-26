@@ -1,0 +1,33 @@
+version: '3.5'
+
+networks:
+    mtls_demo_network:
+        name: mtls_demo_network
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.23.0.0/16
+services:
+  service_api:
+    build:
+      context: ./
+      dockerfile: Service/Dockerfile
+    ports:
+      - "5150:5150"
+      - "5151:5151"
+    networks:
+        mtls_demo_network:
+    environment: 
+      ASPNETCORE_ENVIRONMENT: Release
+  
+  client_api:
+    build:
+      context: ./
+      dockerfile: Client/Dockerfile
+    ports:
+      - "5140:5140"
+      - "5141:5141"
+    networks:
+        mtls_demo_network:
+    environment: 
+      ASPNETCORE_ENVIRONMENT: Release
