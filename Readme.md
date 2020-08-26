@@ -1,4 +1,4 @@
-# mTLS dotnet core Demo
+# mTLS dotnet core example
 
 This project implements the interaction between two dotnet core services through mTLS.
 
