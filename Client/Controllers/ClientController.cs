@@ -1,4 +1,4 @@
-﻿using ClientService.Services;
+﻿using ClientServices.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net.Http;
@@ -22,16 +22,16 @@ namespace Client.Controllers
         {
             try
             {
-                HttpResponseMessage httpResponseMessage = await clientService.SayHi();
+                string httpResponseMessage = await clientService.SayHi();
 
-                if (httpResponseMessage != null)
-                    return Ok(httpResponseMessage.Content);
+                if (!string.IsNullOrEmpty(httpResponseMessage))
+                    return Ok(httpResponseMessage);
                 else
                     return Ok("Didn't get any response back");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(501);
+                return StatusCode(500, ex.Message);
             }
         }
     }

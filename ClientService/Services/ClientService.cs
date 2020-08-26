@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ClientService.Services
+namespace ClientServices.Services
 {
     public class ClientService : IClientService
     {
@@ -14,7 +14,7 @@ namespace ClientService.Services
         {
             this.httpClient = httpClient;
         }
-        public async Task<HttpResponseMessage> SayHi()
+        public async Task<string> SayHi()
         {
             Uri uri = new Uri(httpClient.BaseAddress, "Service");
 
@@ -25,8 +25,8 @@ namespace ClientService.Services
             var content = await response.Content.ReadAsStringAsync();
             content = Regex.Unescape(content);
 
-            if (response.StatusCode != System.Net.HttpStatusCode.OK)
-                return response;
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                return content;
             else
                 throw new Exception("Service didn't respond as expected. Status code: " + response.StatusCode);
         }

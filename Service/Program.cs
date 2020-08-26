@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using System;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Service
 {
@@ -21,6 +19,27 @@ namespace Service
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.ConfigureKestrel(o =>
+                    {
+                        o.ConfigureHttpsDefaults(o => {
+                            o.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
+                            o.ClientCertificateValidation = ValidateClientCertficate;
+                        });
+                    });
                 });
+
+        public static Func<X509Certificate, X509Chain, SslPolicyErrors, bool> ValidateClientCertficate =
+            delegate (X509Certificate serviceCertificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+            {
+                X509Certificate2 clientCertificate;
+                clientCertificate = new X509Certificate2("client.crt");
+
+                if (serviceCertificate.GetCertHashString().Equals(clientCertificate.Thumbprint))
+                {
+                    return true;
+                }
+
+                return false;
+            };
     }
 }

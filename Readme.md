@@ -1,6 +1,6 @@
 # mTLS dotnet core Demo
 
-This is an attempt to interact two dotnet core services with mTLS. The question is currently being regarded [here][issue].
+This project implements the interaction between two dotnet core services through mTLS.
 
 ### Build and Run
 
@@ -17,11 +17,6 @@ $ dotnet bin/Debug/netcoreapp3.1/Client.dll
 $ cd Service
 $ dotnet bin/Debug/netcoreapp3.1/Service.dll
 ```
-
-### Todos
-
- - Fix the issue =(
- - I'm also still can't get curl trust these certificates even after they are properbly installed so you need access through the browser.
 
 License
 ----

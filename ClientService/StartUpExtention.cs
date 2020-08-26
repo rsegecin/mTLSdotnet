@@ -1,4 +1,4 @@
-﻿using ClientService.Services;
+﻿using ClientServices.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
-namespace ClientService
+namespace ClientServices
 {
     public static class StartUpExtention
     {
@@ -23,7 +23,7 @@ namespace ClientService
                     return false;
                 };
 
-            services.AddHttpClient<IClientService, Services.ClientService>()
+            services.AddHttpClient<IClientService, ClientService>()
                 .ConfigureHttpClient(client =>
                 {
                     client.BaseAddress = new Uri(configuration.GetValue<string>("Microservices:ServiceAPI"));

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Service.Filter;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Service.Controllers
 {
@@ -14,7 +14,6 @@ namespace Service.Controllers
         }
 
         [HttpPost]
-        [ValidateClientCertificate]
         public IActionResult ValidateCertificate() 
         {
             return Ok("mTLS is Burning =)");

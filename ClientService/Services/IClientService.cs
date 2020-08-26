@@ -1,10 +1,10 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace ClientService.Services
+namespace ClientServices.Services
 {
     public interface IClientService
     {
-        Task<HttpResponseMessage> SayHi();
+        Task<string> SayHi();
     }
 }
