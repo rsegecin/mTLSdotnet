@@ -10,6 +10,8 @@
 *.userosscache
 *.sln.docstates
 
+Certificates/CA/*.txt
+
 /**/*.pem
 /**/*.csr
 /**/*.attr
